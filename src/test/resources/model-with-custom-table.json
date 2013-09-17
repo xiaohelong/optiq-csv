@@ -8,7 +8,7 @@
         {
           name: 'EMPS',
           type: 'custom',
-          factory: 'net.hydromatic.optiq.impl.csv.CsvTableFactory',
+          factory: 'net.hydromatic.optiq.impl.csv.SolrTableFactory',
           operand: {
             file: 'target/test-classes/sales/EMPS.csv',
             smart: false

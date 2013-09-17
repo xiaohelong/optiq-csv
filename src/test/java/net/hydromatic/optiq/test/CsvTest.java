@@ -91,13 +91,13 @@ public class CsvTest {
 
   @Test public void testPushDownProject() throws SQLException {
     checkSql("smart", "explain plan for select * from EMPS",
-        "PLAN=CsvTableScan(table=[[SALES, EMPS]], fields=[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]])\n"
+        "PLAN=SolrTableScan(table=[[SALES, EMPS]], fields=[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]])\n"
         + "\n");
   }
 
   @Test public void testPushDownProject2() throws SQLException {
     checkSql("smart", "explain plan for select name, empno from EMPS",
-        "PLAN=CsvTableScan(table=[[SALES, EMPS]], fields=[[1, 0]])\n"
+        "PLAN=SolrTableScan(table=[[SALES, EMPS]], fields=[[1, 0]])\n"
         + "\n");
     // make sure that it works...
     checkSql("smart", "select name, empno from EMPS",

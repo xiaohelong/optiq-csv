@@ -137,7 +137,7 @@ format. Here is the model:
     {
       name: 'SALES',
       type: 'custom',
-      factory: 'net.hydromatic.optiq.impl.csv.CsvSchemaFactory',
+      factory: 'net.hydromatic.optiq.impl.csv.SolrSchemaFactory',
       operand: {
         directory: 'target/test-classes/sales'
       }
@@ -148,7 +148,7 @@ format. Here is the model:
 
 The model defines a single schema called 'SALES'. The schema is
 powered by a plugin class,
-<a href="https://github.com/julianhyde/optiq-csv/blob/master/src/main/java/net/hydromatic/optiq/impl/csv/CsvSchemaFactory.java">net.hydromatic.optiq.impl.csv.CsvSchemaFactory</a>, which is part of the
+<a href="https://github.com/julianhyde/optiq-csv/blob/master/src/main/java/net/hydromatic/optiq/impl/csv/CsvSchemaFactory.java">net.hydromatic.optiq.impl.csv.SolrSchemaFactory</a>, which is part of the
 optiq-csv project and implements the Optiq interface
 <a href="http://www.hydromatic.net/optiq/apidocs/net/hydromatic/optiq/SchemaFactory.html">SchemaFactory</a>. Its <code>create</code> method instantiates a
 schema, passing in the <code>directory</code> argument from the model file:
@@ -172,7 +172,7 @@ public Schema create(MutableSchema parentSchema, String name,
 
 Driven by the model, the schema factory instantiates a single schema
 called 'SALES'.  The schema is an instance of
-<a href="https://github.com/julianhyde/optiq-csv/blob/master/src/main/java/net/hydromatic/optiq/impl/csv/CsvSchema.java">net.hydromatic.optiq.impl.csv.CsvSchema</a>
+<a href="https://github.com/julianhyde/optiq-csv/blob/master/src/main/java/net/hydromatic/optiq/impl/csv/CsvSchema.java">net.hydromatic.optiq.impl.csv.SolrSchema</a>
 and implements the Optiq interface <a
 href="http://www.hydromatic.net/optiq/apidocs/net/hydromatic/optiq/Schema.html">Schema</a>.
 
@@ -262,7 +262,7 @@ Here is a schema that defines a view:
     {
       name: 'SALES',
       type: 'custom',
-      factory: 'net.hydromatic.optiq.impl.csv.CsvSchemaFactory',
+      factory: 'net.hydromatic.optiq.impl.csv.SolrSchemaFactory',
       operand: {
         directory: 'target/test-classes/sales'
       },
@@ -311,7 +311,7 @@ There is an example in <code>model-with-custom-table.json</code>:
         {
           name: 'EMPS',
           type: 'custom',
-          factory: 'net.hydromatic.optiq.impl.csv.CsvTableFactory',
+          factory: 'net.hydromatic.optiq.impl.csv.SolrTableFactory',
           operand: {
             file: 'target/test-classes/sales/EMPS.csv',
             smart: false
@@ -340,7 +340,7 @@ sqlline> SELECT empno, name FROM custom_table.emps;
 ```
 
 The schema is a regular one, and contains a custom table powered by
-<a href="https://github.com/julianhyde/optiq-csv/blob/master/src/main/java/net/hydromatic/optiq/impl/csv/CsvTableFactory.java">net.hydromatic.optiq.impl.csv.CsvTableFactory</a>,
+<a href="https://github.com/julianhyde/optiq-csv/blob/master/src/main/java/net/hydromatic/optiq/impl/csv/CsvTableFactory.java">net.hydromatic.optiq.impl.csv.SolrTableFactory</a>,
 which implements the Optiq interface
 <a href="http://www.hydromatic.net/optiq/apidocs/net/hydromatic/optiq/TableFactory.html">TableFactory</a>.
 Its <code>create</code> method instantiates a

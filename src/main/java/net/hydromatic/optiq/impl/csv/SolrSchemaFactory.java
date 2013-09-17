@@ -18,37 +18,36 @@
 package net.hydromatic.optiq.impl.csv;
 
 import net.hydromatic.optiq.*;
-
-import org.eigenbase.reltype.RelDataType;
+import net.hydromatic.optiq.impl.mongodb.MongoSchema;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**
- * Factory that creates a {@link CsvTable}.
+ * Factory that creates a {@link SolrSchema}.
  *
- * <p>Allows a CSV table to be included in a model.json file, even in a
- * schema that is not based upon {@link CsvSchema}.</p>
+ * <p>Allows a custom schema to be included in a model.json file.</p>
  */
 @SuppressWarnings("UnusedDeclaration")
-public class CsvTableFactory implements TableFactory<CsvTable> {
+public class SolrSchemaFactory implements SchemaFactory {
   // public constructor, per factory contract
-  public CsvTableFactory() {
+  public SolrSchemaFactory() {
   }
 
-  public CsvTable create(Schema schema, String name,
-      Map<String, Object> map, RelDataType rowType) {
-    String fileName = (String) map.get("file");
-    Boolean smart = (Boolean) map.get("smart");
-    final File file = new File(fileName);
-    final List<CsvFieldType> list = new ArrayList<CsvFieldType>();
-    final RelDataType rowType2 =
-        CsvTable.deduceRowType(schema.getTypeFactory(), file, list);
-    final RelDataType rowType3 = rowType != null ? rowType : rowType2;
-    return new CsvTable(schema, name, file, rowType3, list);
-  }
+    public Schema create(MutableSchema parentSchema, String name,
+                         Map<String, Object> operand) {
+        Map map = (Map) operand;
+        String host = (String) map.get("host");
+        String core = (String) map.get("core");
+        final SolrSchema schema =
+                new SolrSchema(
+                        parentSchema,
+                        host,
+                        core,
+                        parentSchema.getSubSchemaExpression(name, SolrSchema.class));
+        parentSchema.addSchema(name, schema);
+        return schema;
+    }
 }
 
-// End CsvTableFactory.java
+// End SolrSchemaFactory.java
