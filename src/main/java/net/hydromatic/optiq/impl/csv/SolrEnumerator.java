@@ -94,7 +94,7 @@ class SolrEnumerator implements Enumerator<Object[]> {
           final Object string = f2.get(entry);
 
 
-        objects[findPosition(entry)] = string; //convert(fieldTypes[field], string);
+        objects[findPosition(entry)] = string;
     }
 
       /**

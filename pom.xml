@@ -173,7 +173,7 @@
           <target>1.5</target>
         </configuration>
       </plugin>
-        <plugin>
+      <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
             <executions>
                 <execution>

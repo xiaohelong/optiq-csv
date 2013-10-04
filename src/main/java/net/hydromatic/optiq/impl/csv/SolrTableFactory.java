@@ -34,6 +34,8 @@ public class SolrTableFactory implements TableFactory<SolrTable> {
 
         SolrQuery query = new SolrQuery();
         query.setQuery( "*:*" );
+        query.setFacetLimit(100000);
+        query.setParam("rows","10000");
         SolrDocumentList res = null;
         try {
             res = server.query(query).getResults();

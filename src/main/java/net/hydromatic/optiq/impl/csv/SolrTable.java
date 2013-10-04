@@ -50,7 +50,6 @@ public class SolrTable extends AbstractQueryable<Object[]>
     private final List<SolrFieldType> fieldTypes;
     private final SolrDocumentList doc;
     private static List<String> names;
-
     /** Creates a CsvTable. */
     SolrTable(Schema schema, String tableName, SolrDocumentList doc, RelDataType rowType,
              List<SolrFieldType> fieldTypes) {
